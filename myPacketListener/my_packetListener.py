@@ -6,5 +6,8 @@ def listen_packet(interface):
     #prn= callback function
 
 def analyze_packets(packet):
-    packet.show()
+    #packet.show()
+    if packet.haslayer(http.HTTPRequest):
+        if packet.haslayer(scapy.Raw):
+            print(packet[scapy.Raw].load)
 listen_packet("eth0")
